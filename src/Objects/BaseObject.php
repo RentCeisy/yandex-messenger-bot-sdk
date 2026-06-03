@@ -14,9 +14,10 @@ abstract class BaseObject extends Collection
         parent::__construct($this->getPropertyValue($data));
     }
 
-    public static function make(array $data): static
+    public static function make($items = []): static
     {
-        $data = data_get($data, 'result', $data);
+        $data = data_get($items, 'result', $items);
+        $data = is_array($data) ? $data : (array) $data;
 
         return new static($data);
     }
